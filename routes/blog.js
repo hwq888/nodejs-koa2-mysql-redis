@@ -12,9 +12,13 @@ const loginCheck = require('../middleware/loginCheck')
 router.prefix('/api/blog')
 
 router.get('/list', async function (ctx, next) {
+    console.log('cur time', Date.now())
+    // pm2日志 假装错误测试
+    console.error('假装错误', Date.now())
+
     let author = ctx.query.author || ''
     const keyword = ctx.query.keyword || ''
-
+    
     if (ctx.query.isadmin) {
         console.log('is admin')
         // 管理员界面
