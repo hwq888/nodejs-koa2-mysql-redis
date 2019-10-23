@@ -12,26 +12,11 @@ const loginCheck = require('../middleware/loginCheck')
 router.prefix('/api/blog')
 
 router.get('/list', async function (ctx, next) {
-    console.log('cur time', Date.now())
+    // console.log('cur time', Date.now())
     // pm2日志 假装错误测试
-    console.error('假装错误', Date.now())
-
+    // console.error('假装错误', Date.now())
     let author = ctx.query.author || ''
     const keyword = ctx.query.keyword || ''
-    
-    if (ctx.query.isadmin) {
-        console.log('is admin')
-        // 管理员界面
-        if (ctx.session.username == null) {
-            console.error('is admin, but no login')
-            // 未登录
-            ctx.body = new ErrorModel('未登录')
-            return
-        }
-        // 强制查询自己的博客
-        author = ctx.session.username
-    }
-
     const listData = await getList(author, keyword)
     ctx.body = new SuccessModel(listData)
 })
@@ -39,6 +24,18 @@ router.get('/list', async function (ctx, next) {
 router.get('/detail', async function (ctx, next) {
     const data = await getDetail(ctx.query.id)
     ctx.body = new SuccessModel(data)
+})
+
+router.get('/mylist',loginCheck, async function (ctx, next) {
+    let author = ''
+    const keyword = ctx.query.keyword || ''
+    if (ctx.state.user) {
+        console.log(`ctx.state.user: ${ctx.state.user}`)
+        // 强制查询自己的博客
+        author = ctx.state.user.username
+        const listData = await getList(author, keyword)
+        ctx.body = new SuccessModel(listData)
+    }
 })
 
 router.post('/new', loginCheck, async function (ctx, next) {

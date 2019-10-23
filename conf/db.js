@@ -4,6 +4,12 @@ const env = process.env.NODE_ENV  // 环境参数
 let MYSQL_CONF
 let REDIS_CONF
 
+// TOKEN配置
+let AUTHORIZATION = {
+    jwtSecret: 'jwtSecret', // token秘钥
+    tokenExpiresTime: 60 * 1 // token过期时间
+}
+
 if (env === 'dev') {
     // mysql
     MYSQL_CONF = {
@@ -40,5 +46,6 @@ if (env === 'production') {
 
 module.exports = {
     MYSQL_CONF,
-    REDIS_CONF
+    REDIS_CONF,
+    AUTHORIZATION
 }
