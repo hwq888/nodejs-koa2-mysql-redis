@@ -13,7 +13,7 @@ module.exports = async (ctx, next) => {
                 let user = await userInfo(payload.id)
                 if (!!user) {
                     const userData =  {
-                        name: payload.username,
+                        name: payload.name,
                         id: payload.id
                     }
                     ctx.state.user = userData // 存用户数据
