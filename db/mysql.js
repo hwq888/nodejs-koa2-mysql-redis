@@ -23,5 +23,5 @@ function exec(sql) {
 
 module.exports = {
     exec,
-    escape: mysql.escape
+    escape: mysql.escape // 防止sql注入 编码特殊字符
 }

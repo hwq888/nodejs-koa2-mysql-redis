@@ -11,24 +11,41 @@ class BaseModel {
         if (message) {
             this.message = message
         }
+        console.log(this)
     }
 }
-
+// 成功
 class SuccessModel extends BaseModel {
     constructor(data, message) {
         super(data, message)
-        this.errno = 0
+        this.code = 0
     }
 }
-
+// 错误
 class ErrorModel extends BaseModel {
     constructor(data, message) {
         super(data, message)
-        this.errno = -1
+        this.code = -1
+    }
+}
+// token 认证失败
+class LoginFailure extends BaseModel {
+    constructor(data, message) {
+        super(data, message)
+        this.code = 401
     }
 }
 
+// 自定义code，方便特殊情况下返回特殊code，不能和上面已建的code重复
+class CustomModel extends BaseModel {
+    constructor(code, data, message) {
+        super(data, message)
+        this.code = code
+    }
+}
 module.exports = {
     SuccessModel,
-    ErrorModel
+    ErrorModel,
+    LoginFailure,
+    CustomModel
 }
