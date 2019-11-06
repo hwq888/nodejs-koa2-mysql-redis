@@ -18,7 +18,7 @@ class SuccessModel extends BaseModel {
     constructor(data, message) {
         super(data, message)
         this.code = 0
-        console.log(this)
+        console.log(this) // 打印日志
     }
 }
 // 错误
@@ -26,7 +26,7 @@ class ErrorModel extends BaseModel {
     constructor(data, message) {
         super(data, message)
         this.code = -1
-        console.log(this)
+        console.log(this) // 打印日志
     }
 }
 // token 认证失败
@@ -34,7 +34,7 @@ class LoginFailure extends BaseModel {
     constructor(data, message) {
         super(data, message)
         this.code = 401
-        console.log(this)
+        console.log(this) // 打印日志
     }
 }
 
@@ -43,7 +43,7 @@ class CustomModel extends BaseModel {
     constructor(code, data, message) {
         super(data, message)
         this.code = code
-        console.log(this)
+        console.log(this) // 打印日志
     }
 }
 module.exports = {

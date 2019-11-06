@@ -52,15 +52,15 @@ router.post('/login', async function (ctx, next) {
 })
 
 // session 测试
-router.get('/session-test', async function (ctx, next) {
-    const session = ctx.session
-    if (session.viewNum == null) {
-        session.viewNum = 0
-    }
-    session.viewNum++
-    ctx.body = {
-        viewNum: session.viewNum
-    }
-})
+// router.get('/session-test', async function (ctx, next) {
+//     const session = ctx.session
+//     if (session.viewNum == null) {
+//         session.viewNum = 0
+//     }
+//     session.viewNum++
+//     ctx.body = {
+//         viewNum: session.viewNum
+//     }
+// })
 
 module.exports = router

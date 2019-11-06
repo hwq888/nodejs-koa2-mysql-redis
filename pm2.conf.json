@@ -1,0 +1,15 @@
+{
+    "apps": {
+        "name": "pm2-test-server", // 名称
+        "script": "bin/www", // 启动文件
+        "watch": true, // 监听代码变化自动重启
+        "ignore_watch": [ // 忽略监听文件
+            "node_modules",
+            "logs"
+        ],
+//        "instances": 4, // 多进程 一般有多少核cpn就启动多少个进程
+        "error_file": "logs/err.log", // console.error('输出')
+        "out_file": "logs/out.log", // console.log('输出')
+        "log_date_format": "YYYY-MM-DD HH:mm:ss" // 在每个日志输入之前 都加上 日期时间
+    }
+}
