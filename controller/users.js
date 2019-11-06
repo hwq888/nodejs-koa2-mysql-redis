@@ -3,7 +3,7 @@
  * **/
 const { exec, escape } = require('../db/mysql')
 const { genPassword } = require('../utils/cryp')
-
+// 注册
 const register = async (username, password) => {
     username = escape(username) // 格式化 预防sql注入
     password = genPassword(password) // 生成加密密码
@@ -12,11 +12,12 @@ const register = async (username, password) => {
         INSERT INTO users (username, password) VALUES (${username}, ${password})
     `
     const insertData = await exec(sql)
-    console.log(`insertData:` + JSON.stringify(insertData))
+    // console.log(`insertData:` + JSON.stringify(insertData))
     return {
         id: insertData.insertId
     }
 }
+// 查询当前用户是否存在
 const userNameFilter = async (username) => {
     const sql = `
         select id, username from users where username='${username}'
@@ -24,7 +25,7 @@ const userNameFilter = async (username) => {
     const row = await exec(sql)
     return row[0] || ''
 }
-
+// 登录
 const login = async (username, password) => {
     username = escape(username) // 格式化 预防sql注入
     password = genPassword(password) // 生成加密密码
@@ -33,12 +34,11 @@ const login = async (username, password) => {
     const sql = `
         select id, username, realname from users where username=${username} and password=${password}
     `
-    console.log('sql is', sql)
-
+    // console.log('sql is', sql)
     const rows = await exec(sql)
     return rows[0] || ''
 }
-
+// 根据用户id查询用户信息
 const userInfo = async (id) => {
     id = escape(id) // 格式化 预防sql注入
     const sql = `

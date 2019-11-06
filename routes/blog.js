@@ -12,6 +12,7 @@ const loginCheck = require('../middleware/loginCheck')
 router.prefix('/api/blog')
 // 查询博客列表
 router.get('/list', async function (ctx, next) {
+    // console.log(`获取cookie[UserLoginToken2]： ${ctx.cookies.get('name')}`)
     let author = ctx.query.author || ''
     const keyword = ctx.query.keyword || ''
     const listData = await getList(author, keyword)

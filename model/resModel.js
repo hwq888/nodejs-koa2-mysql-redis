@@ -11,7 +11,6 @@ class BaseModel {
         if (message) {
             this.message = message
         }
-        console.log(this)
     }
 }
 // 成功
@@ -19,6 +18,7 @@ class SuccessModel extends BaseModel {
     constructor(data, message) {
         super(data, message)
         this.code = 0
+        console.log(this)
     }
 }
 // 错误
@@ -26,6 +26,7 @@ class ErrorModel extends BaseModel {
     constructor(data, message) {
         super(data, message)
         this.code = -1
+        console.log(this)
     }
 }
 // token 认证失败
@@ -33,6 +34,7 @@ class LoginFailure extends BaseModel {
     constructor(data, message) {
         super(data, message)
         this.code = 401
+        console.log(this)
     }
 }
 
@@ -41,6 +43,7 @@ class CustomModel extends BaseModel {
     constructor(code, data, message) {
         super(data, message)
         this.code = code
+        console.log(this)
     }
 }
 module.exports = {
